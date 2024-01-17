@@ -1,6 +1,6 @@
-let ro = "rock";
-let pa = "paper";
-let sc = "scissors";
+let rock = "rock";
+let paper = "paper";
+let scissors = "scissors";
 
 
 function game(playerSelection) {
@@ -10,52 +10,56 @@ function game(playerSelection) {
 
     console.log("The computer chose " + getComputerChoice)
 
-    if (playerSelection === ro && getComputerChoice === sc || playerSelection === pa && getComputerChoice === ro || playerSelection === sc && getComputerChoice === pa) {
+    if (
+        (playerSelection === rock && getComputerChoice === scissors) || (playerSelection === paper && getComputerChoice === rock) || (playerSelection === scissors && getComputerChoice === paper)
+    ) { 
         return "You win.";
-    } else if (playerSelection === ro && getComputerChoice === ro || playerSelection === sc && getComputerChoice === sc || playerSelection === pa && getComputerChoice === pa) {
-        return  "You tied.";
+
+    } else if (
+        (playerSelection === rock && getComputerChoice === rock) || (playerSelection === scissors && getComputerChoice === scissors) || (playerSelection === paper && getComputerChoice === paper)
+    ) {
+        return "You tied.";
+    
     } else {
         return "You lose!";
     }
 }
 
-const playerSelection = prompt( "Please choose rock, paper, or scissors." ).toLowerCase();
+const playerSelection = prockmpt( "Please choose rock, paper, or scissors." ).toLowerCase();
 
 console.log("You chose " + playerSelection)
 
 
-game(playerSelection);
-
-console.log(game(playerSelection));
-
+const result = game(playerSelection);
+console.log(result);
 
 // the original else if statements that ran the game
 
 /* function game(playerSelection) {
 
-    const rpsArray = ["rock", "paper", "scissors"];
+    const rpsArray = ["rockck", "paper", "scissors"];
     const getComputerChoice = rpsArray[Math.floor(Math.random() * rpsArray.length)];
 
     console.log("User Input", playerSelection);
     console.log("Computer Choice", getComputerChoice);
 
-    if (playerSelection === ro && getComputerChoice === pa) {
+    if (playerSelection === rock && getComputerChoice === paper) {
         console.log( "You lose!" );
-    } else if (playerSelection === ro && getComputerChoice === ro) {
+    } else if (playerSelection === rock && getComputerChoice === rock) {
         console.log( "You tied!" );
-    } else if (playerSelection === ro && getComputerChoice === sc) {
+    } else if (playerSelection === rock && getComputerChoice === scissors) {
         console.log ( "You win!" );
-    } else if (playerSelection === pa && getComputerChoice === sc) {
+    } else if (playerSelection === paper && getComputerChoice === scissors) {
         console.log( "You lose!" );
-    } else if (playerSelection === pa && getComputerChoice === pa) {
+    } else if (playerSelection === paper && getComputerChoice === paper) {
         console.log ( "You tied!" );
-    } else if (playerSelection === pa && getComputerChoice === ro) {
+    } else if (playerSelection === paper && getComputerChoice === rock) {
         console.log( "You win!" );
-    } else if (playerSelection === sc && getComputerChoice === ro) {
+    } else if (playerSelection === scissors && getComputerChoice === rock) {
         console.log ( "You lose!" );
-    } else if (playerSelection === sc && getComputerChoice === pa) {
+    } else if (playerSelection === scissors && getComputerChoice === paper) {
         console.log ( "You win!" );
-    } else if (playerSelection === sc && getComputerChoice === sc) {
+    } else if (playerSelection === scissors && getComputerChoice === scissors) {
         console.log ( "You tied!");
     }
 } */
