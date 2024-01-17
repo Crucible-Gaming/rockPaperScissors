@@ -27,7 +27,8 @@ function game() {
     let computerScore = 0;
 
     while (playerScore < 3 && computerScore < 3) {
-// ask for player prompt here
+// ask for player prompt here and converts everything to lower case so
+// capitalization doesn't matter
       const playerSelection = prompt("Please choose rock, paper, or scissors.").toLowerCase();
       const computerSelection = getComputerChoice();
   
