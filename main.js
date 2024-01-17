@@ -1,66 +1,59 @@
-let rock = "rock";
-let paper = "paper";
-let scissors = "scissors";
+function getComputerChoice() {
+    const rpsArray = ["rock", "paper", "scissors"]; //initial version had 'ro, pa, sc' for rock paper scissors as variables but were swapped for readability in finished code
+    const randomIndex = Math.floor(Math.random() * rpsArray.length);
+    return rpsArray[randomIndex];
+  }
 
-
-function game(playerSelection) {
-
-    const rpsArray = ["rock", "paper", "scissors"];
-    const getComputerChoice = rpsArray[Math.floor(Math.random() * rpsArray.length)];
-
-    console.log("The computer chose " + getComputerChoice)
-
+function playRound(playerSelection, computerSelection) {
     if (
-        (playerSelection === rock && getComputerChoice === scissors) || (playerSelection === paper && getComputerChoice === rock) || (playerSelection === scissors && getComputerChoice === paper)
-    ) { 
-        return "You win.";
-
-    } else if (
-        (playerSelection === rock && getComputerChoice === rock) || (playerSelection === scissors && getComputerChoice === scissors) || (playerSelection === paper && getComputerChoice === paper)
+      (playerSelection === "rock" && computerSelection === "scissors") ||
+      (playerSelection === "paper" && computerSelection === "rock") ||
+      (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-        return "You tied.";
-    
+      return "You win!"; //no need to do anything special here since the game runs until one side has 3 wins - ties are moot
+    } else if (
+      (playerSelection === "rock" && computerSelection === "rock") ||
+      (playerSelection === "scissors" && computerSelection === "scissors") ||
+      (playerSelection === "paper" && computerSelection === "paper")
+    ) {
+      return "It's a tie!";
     } else {
-        return "You lose!";
+      return "You lose!";
     }
-}
+  }
+  
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
 
-const playerSelection = prockmpt( "Please choose rock, paper, or scissors." ).toLowerCase();
-
-console.log("You chose " + playerSelection)
-
-
-const result = game(playerSelection);
-console.log(result);
-
-// the original else if statements that ran the game
-
-/* function game(playerSelection) {
-
-    const rpsArray = ["rockck", "paper", "scissors"];
-    const getComputerChoice = rpsArray[Math.floor(Math.random() * rpsArray.length)];
-
-    console.log("User Input", playerSelection);
-    console.log("Computer Choice", getComputerChoice);
-
-    if (playerSelection === rock && getComputerChoice === paper) {
-        console.log( "You lose!" );
-    } else if (playerSelection === rock && getComputerChoice === rock) {
-        console.log( "You tied!" );
-    } else if (playerSelection === rock && getComputerChoice === scissors) {
-        console.log ( "You win!" );
-    } else if (playerSelection === paper && getComputerChoice === scissors) {
-        console.log( "You lose!" );
-    } else if (playerSelection === paper && getComputerChoice === paper) {
-        console.log ( "You tied!" );
-    } else if (playerSelection === paper && getComputerChoice === rock) {
-        console.log( "You win!" );
-    } else if (playerSelection === scissors && getComputerChoice === rock) {
-        console.log ( "You lose!" );
-    } else if (playerSelection === scissors && getComputerChoice === paper) {
-        console.log ( "You win!" );
-    } else if (playerSelection === scissors && getComputerChoice === scissors) {
-        console.log ( "You tied!");
+    while (playerScore < 3 && computerScore < 3) {
+// ask for player prompt here
+      const playerSelection = prompt("Please choose rock, paper, or scissors.").toLowerCase();
+      const computerSelection = getComputerChoice();
+  
+      console.log("You chose " + playerSelection);
+      console.log("Computer chose " + computerSelection);
+  
+      const roundResult = playRound(playerSelection, computerSelection);
+  
+      console.log(roundResult);
+  
+      if (roundResult === "You win!") {
+        playerScore++;
+      } else if (roundResult === "You lose!") {
+        computerScore++;
+      }
+      console.log("Player Score: " + playerScore);
+      console.log("Computer Score: " + computerScore);
     }
-} */
-
+  
+    if (playerScore === 3) {
+      console.log("Gratz! You won!");
+    } else {
+      console.log("Oh no! You lost!");
+    }
+  }
+  
+  // call the actual game to start
+  game();
+  
