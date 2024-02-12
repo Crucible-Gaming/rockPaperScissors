@@ -1,11 +1,16 @@
+ const btnRo = document.getElementById('rock');
+ const btnPa = document.getElementById('paper');
+ const btnSc = document.getElementById('scissors');
 
+ const buttons = document.querySelectorAll('button');
 
+buttons.forEach((button) => )
 
 
 
 
 function getComputerChoice() {
-    const rpsArray = ["rock", "paper", "scissors"]; //initial version had 'ro, pa, sc' for rock paper scissors as variables but were swapped for readability in finished code
+    const rpsArray = ["rock", "paper", "scissors"];
     const randomIndex = Math.floor(Math.random() * rpsArray.length);
     return rpsArray[randomIndex];
   }
@@ -16,13 +21,13 @@ function playRound(playerSelection, computerSelection) {
       (playerSelection === "paper" && computerSelection === "rock") ||
       (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-      return "You win!"; //no need to do anything special here since the game runs until one side has 3 wins - ties are moot
+      return "You win!"; 
     } else if (
       (playerSelection === "rock" && computerSelection === "rock") ||
       (playerSelection === "scissors" && computerSelection === "scissors") ||
       (playerSelection === "paper" && computerSelection === "paper")
     ) {
-      return "It's a tie!";
+      return "It's a tie!"; // no need for special code- game is best of 5.
     } else {
       return "You lose!";
     }
