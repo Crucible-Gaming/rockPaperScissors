@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'FragmentMono-Regular.ttf';
+    src: url('FragmentMono-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: "FragmentMono-Regular.ttf";
+}
+
+button {
+    font-family: "FragmentMono-Regular.ttf";
+}
