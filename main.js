@@ -1,3 +1,9 @@
+
+
+
+
+
+
 function getComputerChoice() {
     const rpsArray = ["rock", "paper", "scissors"]; //initial version had 'ro, pa, sc' for rock paper scissors as variables but were swapped for readability in finished code
     const randomIndex = Math.floor(Math.random() * rpsArray.length);
@@ -26,7 +32,7 @@ function game() {
     let playerScore = 0;
     let computerScore = 0;
 
-    while (playerScore < 3 && computerScore < 3) {
+//  while (playerScore < 3 && computerScore < 3) {
 // ask for player prompt here and converts everything to lower case so
 // capitalization doesn't matter
       const playerSelection = prompt("Please choose rock, paper, or scissors.").toLowerCase();
@@ -53,7 +59,7 @@ function game() {
     } else {
       console.log("Oh no! You lost!");
     }
-  }
+//  }  ***This curly is the closing curly for code limiting game to 5 rds***
   
   // call the actual game to start
   game();
