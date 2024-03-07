@@ -1,76 +1,86 @@
-const buttons = document.querySelectorAll('button');
+let buttons = document.querySelectorAll('button');
 
 buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        const playerSelection = button.id;
-        playRound(playerSelection);
-    });
-
+  button.addEventListener('click', (e) => {
+    let playerSelection = e.target.textContent;
+  //  console.log(playerSelection);
+    getComputerChoice;
+    playRound;
+  });
 });
 
 
 
-
-
 function getComputerChoice() {
-    const rpsArray = ["rock", "paper", "scissors"]; //initial version had 'ro, pa, sc' for rock paper scissors as variables but were swapped for readability in finished code
-    const randomIndex = Math.floor(Math.random() * rpsArray.length);
-    return rpsArray[randomIndex];
-  }
+  const rpsArray = ["rock", "paper", "scissors"];
+  const randomIndex = Math.floor(Math.random() * rpsArray.length);
+  return rpsArray[randomIndex];
+}
 
 function playRound(playerSelection, computerSelection) {
-    if (
-      (playerSelection === "rock" && computerSelection === "scissors") ||
-      (playerSelection === "paper" && computerSelection === "rock") ||
-      (playerSelection === "scissors" && computerSelection === "paper")
-    ) {
-      return "You win!"; //no need to do anything special here since the game runs until one side has 3 wins - ties are moot
-    } else if (
-      (playerSelection === "rock" && computerSelection === "rock") ||
-      (playerSelection === "scissors" && computerSelection === "scissors") ||
-      (playerSelection === "paper" && computerSelection === "paper")
-    ) {
-      return "It's a tie!";
-    } else {
-      return "You lose!";
-    }
+  if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
+
+  ) {
+    return "You win!";
+
+  } else if (
+    (playerSelection === "rock" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "paper")
+
+  ) {
+    return "It's a tie!";
+
+  } else {
+    return "You lose!";
+    
   }
-  
+}
+
 function game() {
-    let playerScore = 0;
-    let computerScore = 0;
+  let playerScore = 0;
+  let computerScore = 0;
 
-    while (playerScore < 3 && computerScore < 3) {
-// ask for player prompt here and converts everything to lower case so
-// capitalization doesn't matter
-//    const playerSelection = prompt("Please choose rock, paper, or scissors.").toLowerCase();
-      const computerSelection = getComputerChoice();
-  
-      console.log("You chose " + playerSelection);
-      console.log("Computer chose " + computerSelection);
-  
-      const roundResult = playRound(playerSelection, computerSelection);
-  
-      const scores = document.createElement("results")
+  while (playerScore < 3 && computerScore < 3) {
+    const computerSelection = getComputerChoice();
 
-      results.appendChild(roundResult);
-  
-      if (roundResult === "You win!") {
-        playerScore++;
-      } else if (roundResult === "You lose!") {
-        computerScore++;
-      }
-      results.appendChild("Player Score: " + playerScore);
-      results.appendChild("Computer Score: " + computerScore);
+    const picks = document.createElement('p');
+    document.getElementById('results');
+    results.appendChild('p');
+
+    picks.textContent = "These were the selections this round.";
+
+    picks.appendChild("You chose " + playerSelection);
+    picks.appendChild("Computer chose " + computerSelection);
+
+    const roundResult = playRound(playerSelection, computerSelection);
+
+    const scores = document.createElement("score")
+    results.textContent = "SCORES";
+    score.appendChild(roundResult);
+
+    if (roundResult === "You win!") {
+      playerScore++;
+
+    } else if (roundResult === "You lose!") {
+      computerScore++;
+
     }
-  
-    if (playerScore === 3) {
-      results.appendChild("Gratz! You won!");
-    } else {
-      results.appendChild("Oh no! You lost!");
-    }
+    scores.appendChild("Player Score: " + playerScore);
+    scores.appendChild("Computer Score: " + computerScore);
+    
   }
-  
-  // call the actual game to start
-  game();
-  
+
+  if (playerScore === 3) {
+    scores.appendChild("Gratz! You won!");
+
+  } else {
+    scores.appendChild("Oh no! You lost!");
+
+  }
+}
+//call the actual game to start
+// game();
