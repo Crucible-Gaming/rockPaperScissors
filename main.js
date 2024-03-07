@@ -1,18 +1,74 @@
 let buttons = document.querySelectorAll('button');
 
+// Creates elements to display results
+let playerSelectionDisplay = document.createElement('p');
+let computerSelectionDisplay = document.createElement('p');
+let roundResultDisplay = document.createElement('p');
+let playerScoreDisplay = document.createElement('p');
+let computerScoreDisplay = document.createElement('p');
+let gameResultDisplay = document.createElement('p');
+
+
+// Set base scores.
+
+let playerScore = 0;
+let computerScore = 0;
+
+
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
+
+    if (playerScore === 3 || computerScore === 3) {
+      playerScore = 0;
+      computerScore = 0;
+      gameResultDisplay.textContent = '';
+    }
+    
     let playerSelection = e.target.textContent;
-  //  console.log(playerSelection);
-    getComputerChoice;
-    playRound;
+    let computerSelection= getComputerChoice();
+    let roundResult = playRound(playerSelection, computerSelection);
+
+    playerSelectionDisplay.textContent = "You chose: " + playerSelection;
+    computerSelectionDisplay.textContent = "Computer chose: " + computerSelection;
+    roundResultDisplay.textContent = roundResult;
+
+  if (roundResult === "You win!") {
+    playerScore++;
+  }else if (roundResult === "You lose!") {
+    computerScore++;
+  }
+
+
+    playerScoreDisplay.textContent = "Player Score: " + playerScore;
+    computerScoreDisplay.textContent = "Computer Score: " + computerScore;
+
+  if (playerScore === 3) {
+    gameResultDisplay.textContent = "Gratz! You won!";
+  } else if (computerScore === 3) {
+    gameResultDisplay.textContent = "Oh no! You lost!";
+  }
+
+  // Append elements to div 'results'
+    let resultsDiv = document.getElementById('results');
+    resultsDiv.appendChild(playerSelectionDisplay);
+    resultsDiv.appendChild(computerSelectionDisplay);
+    resultsDiv.appendChild(roundResultDisplay);
+    resultsDiv.appendChild(playerScoreDisplay);
+    resultsDiv.appendChild(computerScoreDisplay);
+    resultsDiv.appendChild(gameResultDisplay);
+
+    // Change the font size
+    playerSelectionDisplay.style.fontSize = '14px';
+    computerSelectionDisplay.style.fontSize = '14px';
+    roundResultDisplay.style.fontSize = '14px';
+    playerScoreDisplay.style.fontSize = '14px';
+    computerScoreDisplay.style.fontSize = '14px';
+    gameResultDisplay.style.fontSize = '14px';
   });
 });
 
-
-
 function getComputerChoice() {
-  const rpsArray = ["rock", "paper", "scissors"];
+  const rpsArray = ["Rock", "Paper", "Scissors"];
   const randomIndex = Math.floor(Math.random() * rpsArray.length);
   return rpsArray[randomIndex];
 }
@@ -40,47 +96,4 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-
-  while (playerScore < 3 && computerScore < 3) {
-    const computerSelection = getComputerChoice();
-
-    const picks = document.createElement('p');
-    document.getElementById('results');
-    results.appendChild('p');
-
-    picks.textContent = "These were the selections this round.";
-
-    picks.appendChild("You chose " + playerSelection);
-    picks.appendChild("Computer chose " + computerSelection);
-
-    const roundResult = playRound(playerSelection, computerSelection);
-
-    const scores = document.createElement("score")
-    results.textContent = "SCORES";
-    score.appendChild(roundResult);
-
-    if (roundResult === "You win!") {
-      playerScore++;
-
-    } else if (roundResult === "You lose!") {
-      computerScore++;
-
-    }
-    scores.appendChild("Player Score: " + playerScore);
-    scores.appendChild("Computer Score: " + computerScore);
-    
-  }
-
-  if (playerScore === 3) {
-    scores.appendChild("Gratz! You won!");
-
-  } else {
-    scores.appendChild("Oh no! You lost!");
-
-  }
-}
-//call the actual game to start
-// game();
+// game function is deprecated and the logic was incorporated into the eventListener
