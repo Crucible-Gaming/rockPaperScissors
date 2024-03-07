@@ -23,7 +23,7 @@ buttons.forEach((button) => {
       computerScore = 0;
       gameResultDisplay.textContent = '';
     }
-    
+
     let playerSelection = e.target.textContent;
     let computerSelection= getComputerChoice();
     let roundResult = playRound(playerSelection, computerSelection);
@@ -74,6 +74,9 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
+  playerSelection = playerSelection.toLowerCase();
+  computerSelection = computerSelection.toLowerCase();
+
   if (
     (playerSelection === "rock" && computerSelection === "scissors") ||
     (playerSelection === "paper" && computerSelection === "rock") ||
